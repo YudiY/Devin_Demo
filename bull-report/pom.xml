@@ -7,8 +7,8 @@
 
     <parent>
         <artifactId>bean-utils-library-parent</artifactId>
-        <groupId>com.expediagroup.beans</groupId>
-        <version>3.0.5-SNAPSHOT</version>
+        <groupId>com.hotels.beans</groupId>
+        <version>1.7.7-SNAPSHOT</version>
     </parent>
 
     <properties>
@@ -17,22 +17,22 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.expediagroup.beans</groupId>
+            <groupId>com.hotels.beans</groupId>
             <artifactId>bull-common</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.expediagroup.beans</groupId>
+            <groupId>com.hotels.beans</groupId>
             <artifactId>bull-converter</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.expediagroup.beans</groupId>
+            <groupId>com.hotels.beans</groupId>
             <artifactId>bull-bean-transformer</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.expediagroup.beans</groupId>
+            <groupId>com.hotels.beans</groupId>
             <artifactId>bull-map-transformer</artifactId>
             <version>${project.version}</version>
         </dependency>

@@ -55,13 +55,13 @@ public final class MavenWrapperDownloader {
      */
     public static void main(final String... args) {
         System.out.println("- Downloader started");
-        var baseDirectory = new File(args[0]);
+        File baseDirectory = new File(args[0]);
         System.out.println("- Using base directory: " + baseDirectory.getAbsolutePath());
         try {
-            var properties = parsePropertiesFile(MAVEN_WRAPPER_PROPERTIES_PATH, baseDirectory);
+            Properties properties = parsePropertiesFile(MAVEN_WRAPPER_PROPERTIES_PATH, baseDirectory);
             String url = properties.getProperty(WRAPPER_URL_PROPERTY_NAME);
             System.out.println("- Downloading from: " + url);
-            var outputFile = new File(baseDirectory.getAbsolutePath(), properties.getProperty(MAVEN_WRAPPER_JAR_PATH_PROPERTY_NAME));
+            File outputFile = new File(baseDirectory.getAbsolutePath(), properties.getProperty(MAVEN_WRAPPER_JAR_PATH_PROPERTY_NAME));
             if (!outputFile.getParentFile().exists()) {
                 if (!outputFile.getParentFile().mkdirs()) {
                     System.out.println("- ERROR creating output directory '" + outputFile.getParentFile().getAbsolutePath() + "'");
@@ -86,12 +86,12 @@ public final class MavenWrapperDownloader {
      * @throws Exception if the parsing fails
      */
     private static Properties parsePropertiesFile(final String propertiesFileName, final File baseDirectory) throws Exception {
-        var mavenWrapperPropertyFile = new File(baseDirectory, propertiesFileName);
+        File mavenWrapperPropertyFile = new File(baseDirectory, propertiesFileName);
         if (!mavenWrapperPropertyFile.exists()) {
             throw new Exception("ERROR: missing properties file: " + propertiesFileName);
         }
-        var properties = new Properties();
-        try (var mavenWrapperPropertyFileInputStream = new FileInputStream(mavenWrapperPropertyFile)) {
+        Properties properties = new Properties();
+        try (FileInputStream mavenWrapperPropertyFileInputStream = new FileInputStream(mavenWrapperPropertyFile)) {
             properties.load(mavenWrapperPropertyFileInputStream);
             return properties;
         } catch (IOException e) {
@@ -116,8 +116,8 @@ public final class MavenWrapperDownloader {
                 }
             });
         }
-        var website = new URL(urlString);
-        try (var fos = new FileOutputStream(destination)) {
+        URL website = new URL(urlString);
+        try (FileOutputStream fos = new FileOutputStream(destination)) {
             ReadableByteChannel rbc = Channels.newChannel(website.openStream());
             fos.getChannel().transferFrom(rbc, 0, MAX_VALUE);
         }

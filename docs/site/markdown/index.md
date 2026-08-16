@@ -2,7 +2,7 @@
     <title>About</title>
 </head>
 
-# ![bull-logo](images/BullBranding_04.png)
+# ![bull-logo](images/BullBranding_03.png)
 
 # Overview
 
@@ -17,7 +17,6 @@ It's the only library able to transform Mutable, Immutable, and Mixed bean witho
 * support copy of immutable beans.
 * support copy of mutable beans.
 * support copy of hybrid beans (some fields private and some not).
-* support copy of Java Records.
 * support copy of Java beans without getter and setter methods.
 * support copy with Java primitive type.
 * support copy with Java Collection type. e.g. `List<BeanA> => List<BeanB>`
