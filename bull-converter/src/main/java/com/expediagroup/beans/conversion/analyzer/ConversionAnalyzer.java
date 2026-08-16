@@ -79,20 +79,41 @@ public final class ConversionAnalyzer {
      */
     @SuppressWarnings("unchecked")
     private Optional<Function<?, ?>> getTypeConversionFunction(final ConversionProcessor conversionProcessor, final Class<?> sourceFieldType) {
-        return switch (sourceFieldType.getName()) {
-            case "java.lang.String" -> of(conversionProcessor.convertString());
-            case "java.lang.Byte", "byte" -> of(conversionProcessor.convertByte());
-            case "java.lang.Short", "short" -> of(conversionProcessor.convertShort());
-            case "java.lang.Integer", "int" -> of(conversionProcessor.convertInteger());
-            case "java.lang.Long", "long" -> of(conversionProcessor.convertLong());
-            case "java.lang.Float", "float" -> of(conversionProcessor.convertFloat());
-            case "java.lang.Double", "double" -> of(conversionProcessor.convertDouble());
-            case "java.lang.Character", "char" -> of(conversionProcessor.convertCharacter());
-            case "java.lang.Boolean", "boolean" -> of(conversionProcessor.convertBoolean());
-            case "java.math.BigInteger" -> of(conversionProcessor.convertBigInteger());
-            case "java.math.BigDecimal" -> of(conversionProcessor.convertBigDecimal());
-            case "[B" -> of(conversionProcessor.convertByteArray());
-            default -> empty();
-        };
+        switch (sourceFieldType.getName()) {
+            case "java.lang.String":
+                return of(conversionProcessor.convertString());
+            case "java.lang.Byte":
+            case "byte":
+                return of(conversionProcessor.convertByte());
+            case "java.lang.Short":
+            case "short":
+                return of(conversionProcessor.convertShort());
+            case "java.lang.Integer":
+            case "int":
+                return of(conversionProcessor.convertInteger());
+            case "java.lang.Long":
+            case "long":
+                return of(conversionProcessor.convertLong());
+            case "java.lang.Float":
+            case "float":
+                return of(conversionProcessor.convertFloat());
+            case "java.lang.Double":
+            case "double":
+                return of(conversionProcessor.convertDouble());
+            case "java.lang.Character":
+            case "char":
+                return of(conversionProcessor.convertCharacter());
+            case "java.lang.Boolean":
+            case "boolean":
+                return of(conversionProcessor.convertBoolean());
+            case "java.math.BigInteger":
+                return of(conversionProcessor.convertBigInteger());
+            case "java.math.BigDecimal":
+                return of(conversionProcessor.convertBigDecimal());
+            case "[B":
+                return of(conversionProcessor.convertByteArray());
+            default:
+                return empty();
+        }
     }
 }

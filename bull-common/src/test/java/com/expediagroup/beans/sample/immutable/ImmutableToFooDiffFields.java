@@ -18,7 +18,7 @@ package com.expediagroup.beans.sample.immutable;
 import java.math.BigInteger;
 import java.util.List;
 
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
