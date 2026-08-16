@@ -48,7 +48,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <jdk.version>11</jdk.version>
+        <jdk.version>17</jdk.version>
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <maven.compiler.target>${jdk.version}</maven.compiler.target>
         <lombok.version>1.18.20</lombok.version>
@@ -88,6 +88,8 @@
         <pmd.check.skip>true</pmd.check.skip>
         <javadoc.skip>false</javadoc.skip>
         <import.order>\#java,\#javax,\#jakarta,\#org,\#,\#com,,\#lombok,java,javax,jakarta,org,,com,,lombok</import.order>
+        <!-- tests use deep reflection on JDK internals, denied by default since JDK 16 -->
+        <surefire.add.opens>--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</surefire.add.opens>
         <spotless.plugin.skip>false</spotless.plugin.skip>
     </properties>
 
@@ -401,6 +403,7 @@
                     <version>${maven.surefire.plugin.version}</version>
                     <configuration>
                         <parallelMavenExecution>false</parallelMavenExecution>
+                        <argLine>@{argLine} ${surefire.add.opens}</argLine>
                     </configuration>
                 </plugin>
                 <!-- jacoco plugin configuration -->
