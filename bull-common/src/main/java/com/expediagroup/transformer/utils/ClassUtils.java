@@ -31,6 +31,7 @@ import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static java.util.Optional.ofNullable;
 import static java.util.Set.of;
+import static java.util.stream.Collectors.toList;
 
 import static com.expediagroup.transformer.constant.Filters.IS_FINAL_AND_NOT_STATIC_FIELD;
 import static com.expediagroup.transformer.constant.Filters.IS_NOT_FINAL_AND_NOT_STATIC_FIELD;
@@ -598,7 +599,7 @@ public final class ClassUtils {
             Constructor<?>[] declaredConstructors = clazz.getDeclaredConstructors();
             var candidates = stream(declaredConstructors)
                     .filter(c -> !isKotlinSyntheticConstructor(c))
-                    .toList();
+                    .collect(toList());
             if (candidates.isEmpty()) {
                 candidates = asList(declaredConstructors);
             }
@@ -856,7 +857,7 @@ public final class ClassUtils {
             List<Field> notFinalFields = new ArrayList<>(getDeclaredFields(clazz, skipStatic)
                     .stream()
                     .filter(IS_NOT_FINAL_FIELD)
-                    .toList());
+                    .collect(toList()));
             CACHE_MANAGER.cacheObject(cacheKey, notFinalFields);
             return notFinalFields;
         });

@@ -106,10 +106,39 @@ public class TransformerImpl extends AbstractBeanTransformer {
      * Holds the resolved effective source object and field name after checking
      * breadcrumb-based field mappings against the root source.
      * @param <T> the source object type
-     * @param source the source object to read the field from
-     * @param fieldName the field name to read from the source
      */
-    private record EffectiveSource<T>(T source, String fieldName) { }
+    private static final class EffectiveSource<T> {
+        /**
+         * The source object to read the field from.
+         */
+        private final T source;
+
+        /**
+         * The field name to read from the source.
+         */
+        private final String fieldName;
+
+        EffectiveSource(final T sourceObject, final String sourceFieldName) {
+            this.source = sourceObject;
+            this.fieldName = sourceFieldName;
+        }
+
+        /**
+         * Returns the source object to read the field from.
+         * @return the source object
+         */
+        T source() {
+            return source;
+        }
+
+        /**
+         * Returns the field name to read from the source.
+         * @return the field name
+         */
+        String fieldName() {
+            return fieldName;
+        }
+    }
 
     /**
      * Resolves the effective source object and field name for a destination field.

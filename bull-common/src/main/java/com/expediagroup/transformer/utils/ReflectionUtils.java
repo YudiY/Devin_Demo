@@ -392,9 +392,9 @@ public final class ReflectionUtils {
      * @return the encapsulated object (if any)
      */
     private Object getRealTarget(final Object target) {
-        if (target instanceof Optional<?> opt) {
+        if (target instanceof Optional<?>) {
             // empty Optional unwraps to null; the caller's null-check then short-circuits field traversal
-            return opt.orElse(null);
+            return ((Optional<?>) target).orElse(null);
         }
         return target;
     }
@@ -479,8 +479,8 @@ public final class ReflectionUtils {
         if (actualTypeArguments.length == 0) {
             return null;
         }
-        return actualTypeArguments[0] instanceof WildcardType wt
-                ? getGenericClassType(wt)
+        return actualTypeArguments[0] instanceof WildcardType
+                ? getGenericClassType((WildcardType) actualTypeArguments[0])
                 : (Class<?>) actualTypeArguments[0];
     }
 
@@ -603,12 +603,12 @@ public final class ReflectionUtils {
      * @return the exception to be thrown
      */
     RuntimeException handleReflectionException(final Exception ex) {
-        if (ex instanceof NoSuchMethodException e) {
-            return new MissingMethodException("Method not found: " + e.getMessage());
-        } else if (ex instanceof IllegalAccessException e) {
-            return new IllegalStateException("Could not access method: " + e.getMessage(), e);
-        } else if (ex instanceof RuntimeException e) {
-            return e;
+        if (ex instanceof NoSuchMethodException) {
+            return new MissingMethodException("Method not found: " + ex.getMessage());
+        } else if (ex instanceof IllegalAccessException) {
+            return new IllegalStateException("Could not access method: " + ex.getMessage(), ex);
+        } else if (ex instanceof RuntimeException) {
+            return (RuntimeException) ex;
         }
         return new UndeclaredThrowableException(ex);
     }

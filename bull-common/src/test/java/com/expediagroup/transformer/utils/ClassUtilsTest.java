@@ -41,7 +41,7 @@ import java.util.Properties;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotNull;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;

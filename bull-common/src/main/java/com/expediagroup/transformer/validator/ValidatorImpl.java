@@ -18,7 +18,7 @@ package com.expediagroup.transformer.validator;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
-import static jakarta.validation.Validation.buildDefaultValidatorFactory;
+import static javax.validation.Validation.buildDefaultValidatorFactory;
 
 import static org.apache.commons.lang3.StringUtils.SPACE;
 
@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 
-import jakarta.validation.ConstraintViolation;
+import javax.validation.ConstraintViolation;
 
 import com.expediagroup.transformer.cache.CacheManager;
 import com.expediagroup.transformer.cache.CacheManagerFactory;
@@ -96,11 +96,11 @@ public class ValidatorImpl implements Validator {
 
     /**
      * Creates the validator.
-     * @return a {@link jakarta.validation.Validator} instance.
+     * @return a {@link javax.validation.Validator} instance.
      */
-    private jakarta.validation.Validator getValidator() {
+    private javax.validation.Validator getValidator() {
         var cacheKey = "BeanValidator";
-        return cacheManager.getFromCache(cacheKey, jakarta.validation.Validator.class)
+        return cacheManager.getFromCache(cacheKey, javax.validation.Validator.class)
                 .orElseGet(() -> {
                     try (var validatorFactory = buildDefaultValidatorFactory()) {
                         var validator = validatorFactory.getValidator();
