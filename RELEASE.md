@@ -16,15 +16,15 @@ Make the following checks before performing a release:
 
 #### Increment the version number.
 
-The application is released with the compatibility for both: `jdk11` and `jdk8`, the latest version number are:
-in the [CHANGELOG.md](CHANGELOG.md) file for `jdk11` and [CHANGELOG-JDK8.md](CHANGELOG-JDK8.md) file for `jdk8`. 
+The application is released with the compatibility for both: `jdk17` and `jdk8`, the latest version number are:
+in the [CHANGELOG.md](CHANGELOG.md) file for `jdk17` and [CHANGELOG-JDK8.md](CHANGELOG-JDK8.md) file for `jdk8`. 
 
 The version number structure is: *major* **.** *minor* **.** *revision*.
    * *major* = significant incompatible change (e.g. partial or whole rewrite).
    * *minor* = some new functionality or changes that are mostly/wholly backward compatible.
    * *revision* = very minor changes, e.g. bugfixes.
    
-For `jdk8` only, the version number is the same as the `jdk11` one, with the suffix: `-jdk8`.
+For `jdk8` only, the version number is the same as the `jdk17` one, with the suffix: `-jdk8`.
 
 e.g. if the new release version would be `X.Y.Z` then the `jdk8` correspondent one is: `X.Y.Z-jdk8`
 
@@ -49,7 +49,7 @@ All the changes implemented need to be reported to a `jdk8` compatible version.
 The BULL code for the `jdk8` is slightly different so all the changes need to be reported on the other version starting
 from it's latest release tag.
 
-The first thing to do is to create a branch (that would have the same name as the `jdk11` one plus the suffix: `-jdk8`)
+The first thing to do is to create a branch (that would have the same name as the `jdk17` one plus the suffix: `-jdk8`)
 starting from the latest `jdk8` release tag:
 
 ```shell script
@@ -63,7 +63,7 @@ the command to perform is:
 $ git checkout -b feature/my-new-feature-jdk8 1.7.0-jdk8 
 ```
 
-**IMPORTANT:** In the new branch, apply only the changes introduced comparing the code with the `jdk11` branch.
+**IMPORTANT:** In the new branch, apply only the changes introduced comparing the code with the `jdk17` branch.
 When completed, commit your code and verify that the [Travis build](https://travis-ci.org/HotelsDotCom/bull/builds) is green. 
 
 ## Example of a release process sequence
@@ -74,10 +74,10 @@ The following examples assume that your local repository is:
 * is all synced with GitHub
 * the Pull Request has been approved and merged on master
 
-The guide explains how to do a release both the `jdk11` and `jdk8` compatible:
+The guide explains how to do a release both the `jdk17` and `jdk8` compatible:
 
 * [JDK8 Release](https://github.com/HotelsDotCom/bull/blob/master/RELEASE.md#jdk8-release)
-* [JDK11 Release](https://github.com/HotelsDotCom/bull/blob/master/RELEASE.md#jdk11-release)
+* [JDK17 Release](https://github.com/HotelsDotCom/bull/blob/master/RELEASE.md#jdk17-release)
 
 **IMPORTANT:** In case something goes wrong, do not leave ghost tags or tags not related to a successful release.
 
@@ -139,7 +139,7 @@ $ git branch -D release/my-new-feature-jdk8
 $ git push <remote_name> --delete release/my-new-feature-jdk8
 ```
 
-### JDK11 Release
+### JDK17 Release
 
 The following steps will do a release "`X.Y.Z`"
 
@@ -154,7 +154,7 @@ nothing to commit, working directory clean
 
 Assuming that:
 
-* The latest release for `jdk11` was: `A.B.C` 
+* The latest release for `jdk17` was: `A.B.C` 
 * your new feature branch is: `feature/my-new-feature`
 * The new release version is: `X.Y.Z`
 
