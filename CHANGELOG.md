@@ -1,6 +1,12 @@
-# BULL Change Log (`jdk 11` or above)
+# BULL Change Log (`jdk 17` or above)
 
 All notable changes to this project will be documented in this file.
+
+### [1.7.7]
+#### Changed
+* The build now targets `jdk 17` (was `jdk 11`).
+* Updated `lombok` version to `1.18.30`, `jacoco` to `0.8.11` and `mockito-core` to `4.11.0` for `jdk 17` compatibility.
+* The `maven-surefire-plugin` runs with `--add-opens java.base/java.lang`, `java.base/java.lang.reflect` and `java.base/java.util` to `ALL-UNNAMED`, required by the reflective access performed by the library and its tests under `jdk 17` strong encapsulation.
 
 ### [1.7.6] 2021.01.11
 #### Added

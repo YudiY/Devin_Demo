@@ -48,14 +48,14 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <jdk.version>11</jdk.version>
+        <jdk.version>17</jdk.version>
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <maven.compiler.target>${jdk.version}</maven.compiler.target>
-        <lombok.version>1.18.20</lombok.version>
+        <lombok.version>1.18.30</lombok.version>
         <apache.commons-lang3.version>3.12.0</apache.commons-lang3.version>
         <hotels.oss.plugin.config.version>1.3.0</hotels.oss.plugin.config.version>
         <!-- testing dependencies -->
-        <mockito-core.version>3.11.1</mockito-core.version>
+        <mockito-core.version>4.11.0</mockito-core.version>
         <testng.version>7.4.0</testng.version>
         <assertj-core.version>3.20.1</assertj-core.version>
         <!-- validation dependencies -->
@@ -64,7 +64,7 @@
         <slf4j-api.version>1.7.30</slf4j-api.version>
         <glassfish.jakarta.el.version>4.0.1</glassfish.jakarta.el.version>
         <!-- JaCoCo & Sonar properties -->
-        <jacoco.version>0.8.7</jacoco.version>
+        <jacoco.version>0.8.11</jacoco.version>
         <jacoco.classRatio>1.0</jacoco.classRatio>
         <jacoco.instructionRatio>0.98</jacoco.instructionRatio>
         <jacoco.methodRatio>1.0</jacoco.methodRatio>
@@ -89,6 +89,7 @@
         <javadoc.skip>false</javadoc.skip>
         <import.order>\#java,\#javax,\#jakarta,\#org,\#,\#com,,\#lombok,java,javax,jakarta,org,,com,,lombok</import.order>
         <spotless.plugin.skip>false</spotless.plugin.skip>
+        <surefire.add.opens>--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</surefire.add.opens>
     </properties>
 
     <!-- distribution configuration -->
@@ -401,6 +402,8 @@
                     <version>${maven.surefire.plugin.version}</version>
                     <configuration>
                         <parallelMavenExecution>false</parallelMavenExecution>
+                        <!-- the library and its tests access JDK internals reflectively, which JDK 17 encapsulates by default -->
+                        <argLine>@{argLine} ${surefire.add.opens}</argLine>
                     </configuration>
                 </plugin>
                 <!-- jacoco plugin configuration -->
