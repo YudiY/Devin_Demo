@@ -48,7 +48,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <jdk.version>11</jdk.version>
+        <jdk.version>17</jdk.version>
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <maven.compiler.target>${jdk.version}</maven.compiler.target>
         <lombok.version>1.18.30</lombok.version>
@@ -405,6 +405,30 @@
                         <!-- the library and its tests access JDK internals reflectively, which JDK 17 encapsulates by default -->
                         <argLine>@{argLine} ${surefire.add.opens}</argLine>
                     </configuration>
+                    <executions>
+                        <execution>
+                            <id>default-test</id>
+                            <configuration>
+                                <excludes>
+                                    <exclude>**/PerformanceTest.java</exclude>
+                                </excludes>
+                            </configuration>
+                        </execution>
+                        <!-- the performance test runs without the JaCoCo agent, whose instrumentation overhead skews the measured transformation times -->
+                        <execution>
+                            <id>performance-test</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>test</goal>
+                            </goals>
+                            <configuration>
+                                <argLine>${surefire.add.opens}</argLine>
+                                <includes>
+                                    <include>**/PerformanceTest.java</include>
+                                </includes>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
                 <!-- jacoco plugin configuration -->
                 <plugin>
